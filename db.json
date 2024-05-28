@@ -1,0 +1,64 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "imageUrl": "https://example.com/image1.jpg",
+      "name": "Product 1",
+      "count": 4,
+      "size": {
+        "width": 200,
+        "height": 200
+      },
+      "weight": "200g",
+      "comments": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 2,
+      "imageUrl": "https://example.com/image1.jpg",
+      "name": "Product 2",
+      "count": 4,
+      "size": {
+        "width": 200,
+        "height": 200
+      },
+      "weight": "200g",
+      "comments": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 3,
+      "imageUrl": "https://example.com/image1.jpg",
+      "name": "Product 3",
+      "count": 4,
+      "size": {
+        "width": 200,
+        "height": 200
+      },
+      "weight": "200g",
+      "comments": [
+        1,
+        2
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "productId": 1,
+      "description": "Great product!",
+      "date": "14:00 22.08.2021"
+    },
+    {
+      "id": 2,
+      "productId": 1,
+      "description": "Not bad",
+      "date": "15:00 23.08.2021"
+    }
+
+  ]
+}
