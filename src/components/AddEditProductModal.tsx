@@ -1,5 +1,6 @@
 // src/components/AddEditProductModal.tsx
 import React, { useState } from 'react';
+import {Modal} from ".//ProductListStyles";
 
 interface AddEditProductModalProps {
     onClose: () => void;
@@ -19,7 +20,7 @@ const AddEditProductModal: React.FC<AddEditProductModalProps> = ({ onClose }) =>
     };
 
     return (
-        <div>
+        <Modal>
             <h2>Add/Edit Product</h2>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -49,7 +50,7 @@ const AddEditProductModal: React.FC<AddEditProductModalProps> = ({ onClose }) =>
                 <button type="submit">Confirm</button>
                 <button type="button" onClick={onClose}>Cancel</button>
             </form>
-        </div>
+        </Modal>
     );
 };
 

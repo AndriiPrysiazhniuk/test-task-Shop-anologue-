@@ -1,15 +1,15 @@
 // src/features/comments/commentsSlice.ts
-import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk, PayloadAction, Dispatch} from '@reduxjs/toolkit';
 import axios from 'axios';
 
-interface Comment {
+type  Comment = {
     id: string;
     productId: string;
     description: string;
     date: string;
 }
 
-interface CommentsState {
+type CommentsState = {
     comments: Comment[];
     loading: boolean;
     error: string | null;
@@ -26,10 +26,16 @@ export const fetchComments = createAsyncThunk('comments/fetchComments', async ()
     return response.data;
 });
 
-const commentsSlice = createSlice({
+const slice = createSlice({
     name: 'comments',
     initialState,
-    reducers: {},
+    reducers: {
+        addNewComment: (state, action: PayloadAction<{ description: string }>) => {
+            state.comments.map(el => ({
+                ...el, description: action.payload.description
+            }));
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchComments.pending, (state) => {
@@ -47,4 +53,11 @@ const commentsSlice = createSlice({
     },
 });
 
-export default commentsSlice.reducer;
+export const commentsSlice = slice.reducer;
+export const commentActions = slice.actions;
+
+const addComment = () => (dispatch: Dispatch) => {
+
+}
+
+

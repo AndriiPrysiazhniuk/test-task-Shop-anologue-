@@ -1,5 +1,5 @@
 // src/features/products/productsSlice.ts
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 interface Size {
@@ -34,10 +34,14 @@ export const fetchProducts = createAsyncThunk('products/fetchProducts', async ()
     return response.data;
 });
 
-const productsSlice = createSlice({
+const slice = createSlice({
     name: 'products',
     initialState,
-    reducers: {},
+    reducers: {
+        addNewProduct: (state, action: PayloadAction<{ product: Product }>) => {
+            state.products.push(action.payload.product);
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchProducts.pending, (state) => {
@@ -55,4 +59,4 @@ const productsSlice = createSlice({
     },
 });
 
-export default productsSlice.reducer;
+export const productsSlice = slice.reducer;

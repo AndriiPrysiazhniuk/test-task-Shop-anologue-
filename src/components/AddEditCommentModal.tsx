@@ -1,5 +1,6 @@
 // src/components/AddEditCommentModal.tsx
 import React, { useState } from 'react';
+import {Modal} from "./ProductListStyles";
 
 interface AddEditCommentModalProps {
     onClose: () => void;
@@ -14,7 +15,7 @@ const AddEditCommentModal: React.FC<AddEditCommentModalProps> = ({ onClose }) =>
     };
 
     return (
-        <div>
+        <Modal>
             <h2>Add/Edit Comment</h2>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -24,7 +25,7 @@ const AddEditCommentModal: React.FC<AddEditCommentModalProps> = ({ onClose }) =>
                 <button type="submit">Confirm</button>
                 <button type="button" onClick={onClose}>Cancel</button>
             </form>
-        </div>
+        </Modal>
     );
 };
 

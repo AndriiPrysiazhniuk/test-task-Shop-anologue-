@@ -1,8 +1,8 @@
 {
   "products": [
     {
-      "id":"1",
-      "imageUrl": "https://example.com/image1.jpg",
+      "id": "1",
+      "imageUrl": "https://s3.amazonaws.com/www-inside-design/uploads/2018/12/The-product-of-you-810x810.png",
       "name": "Product 1",
       "count": 4,
       "size": {
@@ -17,7 +17,7 @@
     },
     {
       "id": "2",
-      "imageUrl": "https://example.com/image1.jpg",
+      "imageUrl": "https://s3.amazonaws.com/www-inside-design/uploads/2018/12/The-product-of-you-810x810.png",
       "name": "Product 2",
       "count": 4,
       "size": {
@@ -32,7 +32,7 @@
     },
     {
       "id": "3",
-      "imageUrl": "https://example.com/image1.jpg",
+      "imageUrl": "https://s3.amazonaws.com/www-inside-design/uploads/2018/12/The-product-of-you-810x810.png",
       "name": "Product 3",
       "count": 4,
       "size": {

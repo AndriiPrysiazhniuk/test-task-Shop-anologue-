@@ -2,10 +2,12 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {RootState, AppDispatch} from '../app/store';
+import {AppRootStateType, useAppDispatch} from '../app/store';
 import {fetchProducts} from '../features/products/productsSlice';
 import {Product} from '../features/products/productsSlice';
 import AddEditCommentModal from './AddEditCommentModal';
+import {AddCommentButton, CommentItem, CommentsList, Container, ProductDetails} from "./ProductViewStyles";
+import {commentActions} from "../features/comments/commentsSlice";
 
 interface ProductViewProps {
     product: Product;
@@ -13,47 +15,48 @@ interface ProductViewProps {
 
 const ProductView: React.FC = () => {
     const {id} = useParams<{ id: string }>();
-    const dispatch = useDispatch<AppDispatch>();
-    const selectedProduct = useSelector((state: RootState) =>
+    const dispatch = useAppDispatch();
+    const product = useSelector((state: AppRootStateType) =>
         state.products.products.find((el) => el.id === id)
     );
 
     useEffect(() => {
-        if (!selectedProduct) {
+        if (!product) {
             dispatch(fetchProducts());
         }
-    }, [dispatch, selectedProduct]);
+    }, [dispatch, product]);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
         setIsModalOpen(true);
+        commentActions.addNewComment({description: 'kfjsdalf'})
     };
 
     const closeModal = () => {
         setIsModalOpen(false);
     };
 
-    if (!selectedProduct) {
+    if (!product) {
         return <div>Loading...</div>;
     }
 
     return (
-        <div>
-            <h1>{selectedProduct.name}</h1>
-            <img src={selectedProduct.imageUrl} alt={selectedProduct.name}/>
-            <p>Count: {selectedProduct.count}</p>
-            <p>Size: {selectedProduct.size.width}x{selectedProduct.size.height}</p>
-            <p>Weight: {selectedProduct.weight}</p>
+        <ProductDetails>
+            <h1>{product.name}</h1>
+            <img src={product.imageUrl} alt={product.name}/>
+            <p>Count: {product.count}</p>
+            <p>Size: {product.size.width}x{product.size.height}</p>
+            <p>Weight: {product.weight}</p>
             <h3>Comments</h3>
-            <ul>
-                {selectedProduct.comments.map((commentId) => (
-                    <li key={commentId}>{/* render comment */}</li>
+            <CommentsList>
+                {product.comments.map((commentId) => (
+                    <CommentItem key={commentId}>{commentId}</CommentItem>
                 ))}
-            </ul>
-            <button onClick={openModal}>Add Comment</button>
+            </CommentsList>
+            <AddCommentButton onClick={openModal}>Add Comment</AddCommentButton>
             {isModalOpen && <AddEditCommentModal onClose={closeModal}/>}
-        </div>
+        </ProductDetails>
     );
 };
 
