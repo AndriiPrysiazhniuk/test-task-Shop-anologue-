@@ -1,10 +1,10 @@
 // src/features/comments/commentsSlice.ts
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 interface Comment {
-    id: number;
-    productId: number;
+    id: string;
+    productId: string;
     description: string;
     date: string;
 }
